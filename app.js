@@ -14,9 +14,6 @@ require('dotenv').config(); // To load environment variables
 // Create the Express app
 const app = express();
 
-// Middleware
-app.use(bodyParser.json());
-
 // Allow CORS from the React frontend
 app.use(cors({
   origin: 'https://main.d3ixo3lcv1bszw.amplifyapp.com',
@@ -24,6 +21,12 @@ app.use(cors({
   allowedHeaders: ['Origin', 'Content-Type', 'Accept', 'Authorization'],
   credentials: true
 }));
+
+app.options('*',cors());
+
+// Middleware
+app.use(bodyParser.json());
+
 
 // Routes
 app.use('/api/auth', authRoutes);
