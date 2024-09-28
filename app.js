@@ -1,5 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const cors = require('cors');
 const sequelize = require('./config/database');
 const courseRoutes = require('./routes/courseRoute');
 const lessonRoutes = require('./routes/lessonRoute');
@@ -15,6 +16,14 @@ const app = express();
 
 // Middleware
 app.use(bodyParser.json());
+
+// Allow CORS from the React frontend
+app.use(cors({
+  origin: 'https://main.d3ixo3lcv1bszw.amplifyapp.com',
+  methods: ['GET', 'POST', 'OPTIONS'],
+  allowedHeaders: ['Origin', 'Content-Type', 'Accept', 'Authorization'],
+  credentials: true
+}));
 
 // Routes
 app.use('/api/auth', authRoutes);
