@@ -43,8 +43,7 @@ exports.register = async (req, res) => {
     return res.status(201).json({
       message: 'User registered successfully',
       user_id: newUser.user_id,
-      token,
-      expiresIn
+      token
     });
   } catch (error) {
     return res.status(500).json({ message: 'Server error', error });
@@ -75,8 +74,7 @@ exports.login = async (req, res) => {
     return res.status(200).json({
       message: 'Login successful',
       user_id: user.user_id,
-      token,
-      expiresIn
+      token
     });
   } catch (error) {
     return res.status(500).json({ message: 'Server error', error });
