@@ -3,6 +3,8 @@ const jwt = require('jsonwebtoken');
 const User = require('../models/user');
 require('dotenv').config(); // To access environment variables
 
+const expiresIn = 86.4;
+
 // Helper function to generate JWT token
 const generateToken = (user) => {
   return jwt.sign(
@@ -43,7 +45,8 @@ exports.register = async (req, res) => {
     return res.status(201).json({
       message: 'User registered successfully',
       user_id: newUser.user_id,
-      token
+      token,
+      expiresIn
     });
   } catch (error) {
     return res.status(500).json({ message: 'Server error', error });
@@ -74,7 +77,8 @@ exports.login = async (req, res) => {
     return res.status(200).json({
       message: 'Login successful',
       user_id: user.user_id,
-      token
+      token,
+      expiresIn
     });
   } catch (error) {
     return res.status(500).json({ message: 'Server error', error });
