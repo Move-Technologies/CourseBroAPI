@@ -16,6 +16,7 @@ const LessonContent = sequelize.define('LessonContent', {
     }
   },
   content_text: DataTypes.TEXT,
+  content_video: DataTypes.TEXT,
   content_type: DataTypes.STRING,
   content_order: DataTypes.INTEGER
 }, { timestamps: false });

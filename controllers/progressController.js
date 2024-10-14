@@ -5,6 +5,7 @@ const User = require('../models/user');
 // Create or Update progress for a specific lesson and user
 exports.trackProgress = async (req, res) => {
   try {
+    
     const { userId, progressPercentage } = req.body;
     const lessonId = req.params.id;
 
@@ -47,7 +48,7 @@ exports.getProgressByUser = async (req, res) => {
 
     const progress = await Progress.findAll({ where: { user_id: userId } });
 
-    res.status(200).json({ user, progress });
+    res.status(200).json(progress);
   } catch (error) {
     res.status(500).json({ error: error.message });
   }

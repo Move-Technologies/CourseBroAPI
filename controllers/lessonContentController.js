@@ -24,7 +24,7 @@ exports.getContentByLesson = async (req, res) => {
 exports.addContentToLesson = async (req, res) => {
   try {
     const lessonId = req.params.id;
-    const { content_text, content_type, content_order } = req.body;
+    const { content_text, content_video, content_type, content_order } = req.body;
 
     const lesson = await Lesson.findByPk(lessonId);
 
@@ -37,6 +37,7 @@ exports.addContentToLesson = async (req, res) => {
       content_text,
       content_type,
       content_order,
+      content_video
     });
 
     res.status(201).json({ message: 'Content added successfully', newContent });
@@ -49,7 +50,7 @@ exports.addContentToLesson = async (req, res) => {
 exports.updateContent = async (req, res) => {
   try {
     const contentId = req.params.id;
-    const { content_text, content_type, content_order } = req.body;
+    const { content_text, content_video, content_type, content_order } = req.body;
 
     const content = await LessonContent.findByPk(contentId);
 
@@ -60,6 +61,7 @@ exports.updateContent = async (req, res) => {
     content.content_text = content_text || content.content_text;
     content.content_type = content_type || content.content_type;
     content.content_order = content_order || content.content_order;
+    content.content_video = content_video || "";
 
     await content.save();
 
